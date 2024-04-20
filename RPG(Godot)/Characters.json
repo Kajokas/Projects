@@ -1,0 +1,74 @@
+{
+  "0": {
+	"name": "Bob",
+	"HP": 20,
+	"Mana": 10,
+	"ATK": 5,
+	"DEF": 2,
+	"Speed": 3
+  },
+  "1": {
+	"name": "Viking",
+	"HP": 25,
+	"Mana": 5,
+	"ATK": 6,
+	"DEF": 3,
+	"Speed": 2
+  },
+  "2": {
+	"name": "Knight",
+	"HP": 30,
+	"Mana": 20,
+	"ATK": 5,
+	"DEF": 3,
+	"Speed": 2
+  },
+  "3": {
+	"name": "Monk",
+	"HP": 30,
+	"Mana": 30,
+	"ATK": 3,
+	"DEF": 1,
+	"Speed": 5
+  },
+  "4": {
+	"name": "Barbarian",
+	"HP": 25,
+	"Mana": 10,
+	"ATK": 5,
+	"DEF": 1,
+	"Speed": 4
+  },
+  "5": {
+	"name": "King",
+	"HP": 20,
+	"Mana": 15,
+	"ATK": 3,
+	"DEF": 1,
+	"Speed": 2
+  },
+  "9": {
+	"name": "Zombie",
+	"HP": 40,
+	"Mana": 0,
+	"ATK": 5,
+	"DEF": 2,
+	"Speed": 3
+  },
+  "10": {
+	"name": "Orc",
+	"HP": 35,
+	"Mana": 0,
+	"ATK": 5,
+	"DEF": 2,
+	"Speed": 3
+  },
+  "11": {
+	"name": "Vampire",
+	"HP": 30,
+	"Mana": 0,
+	"ATK": 5,
+	"DEF": 2,
+	"Speed": 3
+  }
+}

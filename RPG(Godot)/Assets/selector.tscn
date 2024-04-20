@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dab5lf81l4acn"]
+
+[sub_resource type="Gradient" id="Gradient_flrf2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vm6u6"]
+gradient = SubResource("Gradient_flrf2")
+width = 100
+height = 100
+fill_from = Vector2(1, 0.235043)
+fill_to = Vector2(1, 1)
+
+[node name="Selector" type="TextureRect"]
+modulate = Color(1, 0, 1, 0.384314)
+anchors_preset = -1
+anchor_right = 0.087
+anchor_bottom = 0.154
+offset_right = -0.223999
+offset_bottom = 0.208
+texture = SubResource("GradientTexture2D_vm6u6")
