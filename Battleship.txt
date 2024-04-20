@@ -1,0 +1,376 @@
+#include <iostream>
+#include <iomanip>
+#include <map>
+#include <string>
+#include <vector>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+using namespace std;
+class Board
+{
+protected:
+    int b, vs;
+    char a;
+    map<char, vector<char>> pos;
+public:
+    Board() : a(0), b(0), vs(0) { }
+    Board(int x, int y) : a(x), b(y) { }
+    ~Board() { }
+    void pradzia()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            pos['A'].push_back(' ');
+            pos['B'].push_back(' ');
+            pos['C'].push_back(' ');
+            pos['D'].push_back(' ');
+            pos['E'].push_back(' ');
+            pos['F'].push_back(' ');
+            pos['G'].push_back(' ');
+            pos['H'].push_back(' ');
+            pos['I'].push_back(' ');
+            pos['J'].push_back(' ');
+        }
+    }
+    void operator /=(Board x)
+    {
+        system("cls");
+        cout << "Zaidejo taskai: " << x.vs << ", Zaidejo lenta:" << endl;
+        printf("  1 2 3 4 5 6 7 8 9 10\n");
+        cout << " " << setfill('_') << setw(21) << "_" << endl << "A";
+        for (char j = 'A'; j < 'J'; j++)
+        {
+            for (auto i = pos[j].begin(); i != pos[j].end(); ++i)
+            {
+                cout << "|" << *i;
+            }
+            cout << "|" << endl << " " << setfill('_') << setw(21) << "_" << endl;
+            printf("%c", j + 1);
+        }
+        for (auto i = pos['J'].begin(); i != pos['J'].end(); ++i)
+            cout << "|" << *i;
+        cout << "|" << endl << " " << setfill('_') << setw(21) << "_" << endl;
+
+        cout << "Prieso taskai: " << vs << ", Prieso lenta:" << endl;
+        printf("  1 2 3 4 5 6 7 8 9 10\n");
+        cout << " " << setfill('_') << setw(21) << "_" << endl << "A";
+        for (char j = 'A'; j < 'J'; j++)
+        {
+            for (auto i = x.pos[j].begin(); i != x.pos[j].end(); ++i)
+            {
+                if (*i == '0')
+                    cout << "|" << " ";
+                else
+                    cout << "|" << *i;
+            }
+            cout << "|" << endl << " " << setfill('_') << setw(21) << "_" << endl;
+            printf("%c", j + 1);
+        }
+        for (auto i = x.pos['J'].begin(); i != x.pos['J'].end(); ++i)
+        {
+            if (*i == '0')
+                cout << "|" << " ";
+            else
+                cout << "|" << *i;
+        }
+        cout << "|" << endl << " " << setfill('_') << setw(21) << "_" << endl;
+    }
+    int OpenentScore()
+    {
+        return vs;
+    }
+};
+class player : public Board
+{
+public:
+    void place(int D)
+    {
+        char k;
+        bool galimas = false;
+        while (galimas == false)
+        {
+            cin >> a >> b;
+            if (a > 'J' || a < 'A')
+            {
+                cout << "Didziosios A,B,C,D,E,F,G,H,I,J: " << endl;
+                cin >> a >> b;
+            }
+            if (b < 1)
+                b = 1;
+            cout << "Parasyk krypti (h-horizantaliai, v-vertikaliai)" << endl;
+            cin >> k;
+            if (k == 'h')
+            {
+                if (b + D <= pos[a].size())
+                {
+                    for (int i = b; i < b + D; i++)
+                    {
+                        if (pos[a].at(i - 1) == ' ')
+                            galimas = true;
+                        else
+                        {
+                            galimas = false;
+                            break;
+                        }
+                    }
+                    if (galimas == true)
+                        for (int i = b; i < b + D; i++)
+                            pos[a].at(i - 1) = '0';
+                }
+                else
+                {
+                    for (int i = 10 - D; i <= 10; i++)
+                    {
+                        if (pos[a].at(i - 1) == ' ')
+                            galimas = true;
+                        else
+                        {
+                            galimas = false;
+                            break;
+                        }
+                    }
+                    if (galimas == true)
+                        for (int i = 10 - D; i <= 10; i++)
+                            pos[a].at(i - 1) = '0';
+                }
+            }
+            if (k == 'v')
+            {
+                if (a + D <= 'J')
+                {
+                    for (char i = a; i <= a + D; i++)
+                    {
+                        if (pos[i].at(b - 1) == ' ')
+                            galimas = true;
+                        else
+                        {
+                            galimas = false;
+                            break;
+                        }
+                    }
+                    if (galimas == true)
+                        for (char i = a; i <= a + D; i++)
+                            pos[i].at(b - 1) = '0';
+                }
+                else
+                {
+                    for (char i = 'J' - D; i <= 'J'; i++)
+                    {
+                        if (pos[i].at(b - 1) == ' ')
+                            galimas = true;
+                        else
+                        {
+                            galimas = false;
+                            break;
+                        }
+                    }
+                    if (galimas == true)
+                        for (char i = 'J' - D; i <= 'J'; i++)
+                            pos[i].at(b - 1) = '0';
+                }
+            }
+            if (galimas == false)
+                cout << "Negalima vieta.";
+        }
+    }
+    void Guess()
+    {
+        while (true)
+        {
+            srand(time(NULL));
+            a = 'A' + rand() % 10;
+            b = rand() % 10 + 1;
+            if (pos[a].at(b - 1) != 'X' && pos[a].at(b - 1) != '-')
+                break;
+        }
+        if (pos[a].at(b - 1) == '0')
+        {
+            pos[a].at(b - 1) = 'X';
+            vs++;
+        }
+        if (pos[a].at(b - 1) == ' ')
+            pos[a].at(b - 1) = '-';
+    }
+};
+class enemy : public Board
+{
+public:
+    void place(int D)
+    {
+        char k;
+        bool galimas = false;
+        while (galimas == false)
+        {
+            int r;
+
+            srand(time(NULL));
+            a = 'A' + rand() % 10;
+            b = rand() % 10 + 1;
+            r = rand() % 2;
+
+            if (r == 0)
+                k = 'h';
+            else k = 'v';
+
+            if (k == 'h')
+            {
+                if (b + D <= pos[a].size())
+                {
+                    for (int i = b; i < b + D; i++)
+                    {
+                        if (pos[a].at(i - 1) == ' ')
+                            galimas = true;
+                        else
+                        {
+                            galimas = false;
+                            break;
+                        }
+                    }
+                    if (galimas == true)
+                        for (int i = b; i < b + D; i++)
+                            pos[a].at(i - 1) = '0';
+                }
+                else
+                {
+                    for (int i = 10 - D; i <= 10; i++)
+                    {
+                        if (pos[a].at(i - 1) == ' ')
+                            galimas = true;
+                        else
+                        {
+                            galimas = false;
+                            break;
+                        }
+                    }
+                    if (galimas == true)
+                        for (int i = 10 - D; i <= 10; i++)
+                            pos[a].at(i - 1) = '0';
+                }
+            }
+            if (k == 'v')
+            {
+                if (a + D <= 'J')
+                {
+                    for (char i = a; i <= a + D; i++)
+                    {
+                        if (pos[i].at(b - 1) == ' ')
+                            galimas = true;
+                        else
+                        {
+                            galimas = false;
+                            break;
+                        }
+                    }
+                    if (galimas == true)
+                        for (char i = a; i <= a + D; i++)
+                            pos[i].at(b - 1) = '0';
+                }
+                else
+                {
+                    for (char i = 'J' - D; i <= 'J'; i++)
+                    {
+                        if (pos[i].at(b - 1) == ' ')
+                            galimas = true;
+                        else
+                        {
+                            galimas = false;
+                            break;
+                        }
+                    }
+                    if (galimas == true)
+                        for (char i = 'J' - D; i <= 'J'; i++)
+                            pos[i].at(b - 1) = '0';
+                }
+            }
+        }
+    }
+    void Guess()
+    {
+        cin >> a >> b;
+        if (a > 'J' || a < 'A' || b>10 || b < 1)
+        {
+            a = 'A';
+            b = 1;
+        }
+        if (pos[a].at(b - 1) == '0')
+        {
+            pos[a].at(b - 1) = 'X';
+            vs++;
+        }
+        if (pos[a].at(b - 1) == ' ')
+            pos[a].at(b - 1) = '-';
+    }
+    void Hint()
+    {
+        while (true)
+        {
+            srand(time(NULL));
+            a = 'A' + rand() % 10;
+            b = rand() % 10 + 1;
+            if (pos[a].at(b - 1) == '0')
+            {
+                cout << "Priesas turi laiva koordinateje " << a << b << endl;
+                break;
+            }
+        }
+    }
+};
+int main()
+{
+    //int p=0, e=0;
+    player lenta1;
+    enemy lenta2;
+
+    bool panaudotaPagalba = false;
+    char help;
+
+    map<string, int> Ship;
+    Ship["Carrier"] = 5;
+    Ship["Battleship"] = 4;
+    Ship["Cruiser"] = 3;
+    Ship["Submarine1"] = 3;
+    Ship["Submarine2"] = 3;
+    Ship["Destroyer1"] = 2;
+    Ship["Destroyer2"] = 2;
+
+    lenta1.pradzia();
+    lenta2.pradzia();
+
+    lenta1 /= lenta2;
+
+    std::map<std::string, int>::iterator it = Ship.begin();
+    while (it != Ship.end())
+    {
+        cout << "Padek " << it->first << " (" << it->second << " dydzio) ant lentos. (Parasyk kairiausia arba auksciausia koordinate (pvz.:A3)) : " << endl;
+        lenta1.place(it->second);
+        lenta2.place(it->second);
+        ++it;
+        lenta1 /= lenta2;
+    }
+    while (lenta1.OpenentScore() != 22 && lenta2.OpenentScore() != 22)
+    {
+        cout << "Spek kur yra prieso laivas:" << endl;
+        if (lenta1.OpenentScore() == 11 && panaudotaPagalba==false)
+        {
+            cout << "Priesas jau turi puse tasku iki laimejimo. Ar nori atskleisti jo laivo koordinate?(y/n):";
+            cin >> help;
+            if (help == 'y')
+            {
+                lenta2.Hint();
+                panaudotaPagalba = true;
+            }
+                
+        }
+        lenta2.Guess();
+        lenta1.Guess();
+        lenta1 /= lenta2;
+    }
+    system("cls");
+    if (lenta1.OpenentScore() > lenta2.OpenentScore())
+        cout << "Laimejo varzovas";
+    else cout << "Laimejai";
+
+    return 0;
+}
