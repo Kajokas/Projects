@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{C327C73F-700E-DB4E-E6BB-184050B14452}") = "evolver", "Assembly-CSharp.csproj", "{E27E82B4-F011-05B4-9AB2-7D2C2B9E80C1}"
+EndProject
+Project("{C327C73F-700E-DB4E-E6BB-184050B14452}") = "evolver", "Assembly-CSharp-Editor.csproj", "{3135DE8E-3828-89DC-C4C2-815037892D29}"
+EndProject
+Project("{C327C73F-700E-DB4E-E6BB-184050B14452}") = "evolver", "Assembly-UnityScript.unityproj", "{15F39CA0-B39A-4ACA-0D51-7A6271D5BE58}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E27E82B4-F011-05B4-9AB2-7D2C2B9E80C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E27E82B4-F011-05B4-9AB2-7D2C2B9E80C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E27E82B4-F011-05B4-9AB2-7D2C2B9E80C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E27E82B4-F011-05B4-9AB2-7D2C2B9E80C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3135DE8E-3828-89DC-C4C2-815037892D29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3135DE8E-3828-89DC-C4C2-815037892D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3135DE8E-3828-89DC-C4C2-815037892D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3135DE8E-3828-89DC-C4C2-815037892D29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15F39CA0-B39A-4ACA-0D51-7A6271D5BE58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15F39CA0-B39A-4ACA-0D51-7A6271D5BE58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15F39CA0-B39A-4ACA-0D51-7A6271D5BE58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15F39CA0-B39A-4ACA-0D51-7A6271D5BE58}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
