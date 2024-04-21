@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://o5ns88dw6vdt"]
+
+[ext_resource type="Texture2D" uid="uid://bqcjdgikyuhga" path="res://gfx/Heads/Bob Head.png" id="1_f70yi"]
+[ext_resource type="Script" path="res://Scripts/ReaderHead.cs" id="2_5akxl"]
+
+[node name="P1" type="TextureRect"]
+anchors_preset = -1
+anchor_right = 0.087
+anchor_bottom = 0.154
+offset_right = -100.224
+offset_bottom = -99.792
+texture = ExtResource("1_f70yi")
+script = ExtResource("2_5akxl")

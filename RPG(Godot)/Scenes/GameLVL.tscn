@@ -1,0 +1,433 @@
+[gd_scene load_steps=19 format=3 uid="uid://ct1mfhtdjxkio"]
+
+[ext_resource type="Texture2D" uid="uid://w5biemdthbxo" path="res://gfx/PlayerChars/bob.png" id="1_eicys"]
+[ext_resource type="Texture2D" uid="uid://x6mfbjy0j8a2" path="res://gfx/BG/CaveBG.jpg" id="2_3v6qx"]
+[ext_resource type="Texture2D" uid="uid://8u3ffqalso7c" path="res://gfx/EnemyChars/Zombie.png" id="2_tp7ld"]
+[ext_resource type="Script" path="res://Scripts/TheMainGameCombatScript.cs" id="3_wx6bl"]
+[ext_resource type="PackedScene" uid="uid://dab5lf81l4acn" path="res://Assets/selector.tscn" id="5_0p8a2"]
+[ext_resource type="Texture2D" uid="uid://bqcjdgikyuhga" path="res://gfx/Heads/Bob Head.png" id="7_4b34f"]
+[ext_resource type="Script" path="res://Scripts/CharSelectionButt.cs" id="8_ra1kj"]
+[ext_resource type="Texture2D" uid="uid://d3nxg7c2mtqpk" path="res://gfx/Heads/Viking Head.png" id="8_s28pg"]
+[ext_resource type="Texture2D" uid="uid://brbkesj0ddh7i" path="res://gfx/Heads/Knight Head.png" id="10_ffh03"]
+[ext_resource type="Script" path="res://Scripts/ConfirmCharButt.cs" id="10_q6td7"]
+[ext_resource type="Texture2D" uid="uid://byrmo1kus44v3" path="res://gfx/Heads/Monk Head.png" id="11_ggnlk"]
+[ext_resource type="Texture2D" uid="uid://cbkd5leuuqhf7" path="res://gfx/Heads/Barbarian Head.png" id="11_hdruj"]
+[ext_resource type="Script" path="res://Scripts/SetQueueFromPre.cs" id="12_ksnds"]
+[ext_resource type="Texture2D" uid="uid://sitgl3f2ti2w" path="res://gfx/Heads/King Head.png" id="13_wlyap"]
+[ext_resource type="Script" path="res://Scripts/TurnOffCharSelectionScreen.cs" id="14_i1p8v"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_nbcad"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_u7abn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rr6l6"]
+bg_color = Color(0.227451, 0.156863, 0, 0.407843)
+
+[node name="GameLVL" type="Node2D"]
+
+[node name="Player1" type="Sprite2D" parent="."]
+position = Vector2(199, 282)
+scale = Vector2(0.48, 0.48)
+texture = ExtResource("1_eicys")
+
+[node name="Player2" type="Sprite2D" parent="."]
+position = Vector2(342, 354)
+scale = Vector2(0.48, 0.48)
+texture = ExtResource("1_eicys")
+
+[node name="Player3" type="Sprite2D" parent="."]
+position = Vector2(250, 526)
+scale = Vector2(0.48, 0.48)
+texture = ExtResource("1_eicys")
+
+[node name="Enemy 1" type="Sprite2D" parent="."]
+position = Vector2(657, 521)
+scale = Vector2(0.48, 0.48)
+texture = ExtResource("2_tp7ld")
+
+[node name="Enemy 2" type="Sprite2D" parent="."]
+position = Vector2(884, 428)
+scale = Vector2(0.48, 0.48)
+texture = ExtResource("2_tp7ld")
+
+[node name="Enemy 3" type="Sprite2D" parent="."]
+position = Vector2(781, 262)
+scale = Vector2(0.48, 0.48)
+texture = ExtResource("2_tp7ld")
+
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("P1", "P2", "P3", "E1", "E2", "E3", "TurnQueueUI", "PlayerContUI", "EnemyContUI", "PlayerActions", "Selector", "BattleText")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1150.0
+offset_bottom = 647.0
+pivot_offset = Vector2(575, 324)
+size_flags_horizontal = 4
+size_flags_vertical = 6
+script = ExtResource("3_wx6bl")
+P1 = NodePath("../Player1")
+P2 = NodePath("../Player2")
+P3 = NodePath("../Player3")
+E1 = NodePath("../Enemy 1")
+E2 = NodePath("../Enemy 2")
+E3 = NodePath("../Enemy 3")
+TurnQueueUI = NodePath("TurnQueue")
+PlayerContUI = NodePath("PlayerContainer")
+EnemyContUI = NodePath("EnemyContainer")
+PlayerActions = NodePath("PlayerActions")
+Selector = NodePath("Selector")
+BattleText = NodePath("BattleText")
+metadata/_edit_use_anchors_ = true
+
+[node name="BG" type="TextureRect" parent="UI"]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.002
+anchor_bottom = 1.002
+offset_right = -0.300049
+offset_bottom = -0.294067
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3v6qx")
+
+[node name="TurnQueue" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.235
+anchor_right = 0.774
+anchor_bottom = 0.155
+offset_left = -0.250031
+offset_right = -0.100037
+offset_bottom = -0.285004
+alignment = 1
+
+[node name="PlayerContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.155
+anchor_right = 0.11
+anchor_bottom = 0.628
+offset_top = -0.285004
+offset_right = 0.499992
+offset_bottom = -0.31601
+
+[node name="EnemyContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.89
+anchor_top = 0.155
+anchor_right = 1.0
+anchor_bottom = 0.628
+offset_left = 0.499939
+offset_top = -0.285004
+offset_right = 1.0
+offset_bottom = -0.31601
+
+[node name="Selector" parent="UI" instance=ExtResource("5_0p8a2")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = -0.0499954
+offset_bottom = 0.362
+
+[node name="PlayerActions" type="TextureRect" parent="UI"]
+visible = false
+self_modulate = Color(0.517647, 0.372549, 0.372549, 0.709804)
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.682
+anchor_top = 0.733
+anchor_right = 1.002
+anchor_bottom = 1.002
+offset_left = -0.300049
+offset_top = -0.251038
+offset_right = -0.300049
+offset_bottom = -0.294067
+texture = SubResource("CanvasTexture_nbcad")
+
+[node name="Attack" type="Button" parent="UI/PlayerActions"]
+z_index = 2
+layout_mode = 2
+anchor_left = 0.133
+anchor_top = 0.132
+anchor_right = 0.467
+anchor_bottom = 0.425
+offset_left = 0.0559998
+offset_top = 0.0319996
+offset_right = 2.144
+offset_bottom = 2.05
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Attack"
+
+[node name="Defend" type="Button" parent="UI/PlayerActions"]
+z_index = 2
+layout_mode = 2
+anchor_left = 0.524
+anchor_top = 0.121
+anchor_right = 0.864
+anchor_bottom = 0.425
+offset_left = 0.167984
+offset_top = 1.946
+offset_right = 0.0480042
+offset_bottom = 2.05
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Defend"
+
+[node name="Special" type="Button" parent="UI/PlayerActions"]
+z_index = 2
+layout_mode = 2
+anchor_left = 0.133
+anchor_top = 0.489
+anchor_right = 0.473
+anchor_bottom = 0.793
+offset_left = 0.0559998
+offset_top = -0.0860062
+offset_right = -0.0640106
+offset_bottom = 0.0179901
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Special"
+
+[node name="GoBack" type="Button" parent="UI/PlayerActions"]
+z_index = 2
+layout_mode = 2
+anchor_left = 0.524
+anchor_top = 0.489
+anchor_right = 0.864
+anchor_bottom = 0.793
+offset_left = 0.167984
+offset_top = -0.0860062
+offset_right = 0.0480042
+offset_bottom = 0.0179901
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Go back states"
+
+[node name="CharSelection" type="TextureRect" parent="UI"]
+self_modulate = Color(0, 0, 0, 1)
+z_index = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.002
+anchor_bottom = 1.002
+offset_right = -0.300049
+offset_bottom = -0.294067
+texture = SubResource("CanvasTexture_u7abn")
+
+[node name="Screen Title" type="Label" parent="UI/CharSelection"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.305
+anchor_top = 0.062
+anchor_right = 0.664
+anchor_bottom = 0.173
+offset_left = -0.360016
+offset_top = -0.176003
+offset_right = 0.0719604
+offset_bottom = -0.104004
+theme_override_font_sizes/font_size = 50
+text = "Select characters"
+
+[node name="CharSelectionGrid" type="GridContainer" parent="UI/CharSelection"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.359
+anchor_top = 0.219
+anchor_right = 0.627
+anchor_bottom = 0.694
+offset_left = 0.431976
+offset_top = 0.0879974
+offset_right = -0.304016
+offset_bottom = 0.287994
+columns = 3
+
+[node name="HeadButt1" type="Button" parent="UI/CharSelection/CharSelectionGrid" node_paths=PackedStringArray("ConfirmScreen", "ConText", "PreSelect")]
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.988235, 0.847059, 0.337255, 1)
+icon = ExtResource("7_4b34f")
+flat = true
+script = ExtResource("8_ra1kj")
+ConfirmScreen = NodePath("../../Confirmation")
+ConText = NodePath("../../Confirmation/Label")
+PreSelect = NodePath("../../PreSelect")
+
+[node name="HeadButt2" type="Button" parent="UI/CharSelection/CharSelectionGrid" node_paths=PackedStringArray("ConfirmScreen", "ConText", "PreSelect")]
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.988235, 0.847059, 0.337255, 1)
+icon = ExtResource("8_s28pg")
+flat = true
+script = ExtResource("8_ra1kj")
+CharID = 1
+ConfirmScreen = NodePath("../../Confirmation")
+ConText = NodePath("../../Confirmation/Label")
+PreSelect = NodePath("../../PreSelect")
+
+[node name="HeadButt3" type="Button" parent="UI/CharSelection/CharSelectionGrid" node_paths=PackedStringArray("ConfirmScreen", "ConText", "PreSelect")]
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.988235, 0.847059, 0.337255, 1)
+icon = ExtResource("10_ffh03")
+flat = true
+script = ExtResource("8_ra1kj")
+CharID = 2
+ConfirmScreen = NodePath("../../Confirmation")
+ConText = NodePath("../../Confirmation/Label")
+PreSelect = NodePath("../../PreSelect")
+
+[node name="HeadButt4" type="Button" parent="UI/CharSelection/CharSelectionGrid" node_paths=PackedStringArray("ConfirmScreen", "ConText", "PreSelect")]
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.988235, 0.847059, 0.337255, 1)
+icon = ExtResource("11_ggnlk")
+flat = true
+script = ExtResource("8_ra1kj")
+CharID = 3
+ConfirmScreen = NodePath("../../Confirmation")
+ConText = NodePath("../../Confirmation/Label")
+PreSelect = NodePath("../../PreSelect")
+
+[node name="HeadButt5" type="Button" parent="UI/CharSelection/CharSelectionGrid" node_paths=PackedStringArray("ConfirmScreen", "ConText", "PreSelect")]
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.988235, 0.847059, 0.337255, 1)
+icon = ExtResource("11_hdruj")
+flat = true
+script = ExtResource("8_ra1kj")
+CharID = 4
+ConfirmScreen = NodePath("../../Confirmation")
+ConText = NodePath("../../Confirmation/Label")
+PreSelect = NodePath("../../PreSelect")
+
+[node name="HeadButt6" type="Button" parent="UI/CharSelection/CharSelectionGrid" node_paths=PackedStringArray("ConfirmScreen", "ConText", "PreSelect")]
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.988235, 0.847059, 0.337255, 1)
+icon = ExtResource("13_wlyap")
+flat = true
+script = ExtResource("8_ra1kj")
+CharID = 5
+ConfirmScreen = NodePath("../../Confirmation")
+ConText = NodePath("../../Confirmation/Label")
+PreSelect = NodePath("../../PreSelect")
+
+[node name="HeadButt7" type="Button" parent="UI/CharSelection/CharSelectionGrid" node_paths=PackedStringArray("ConfirmScreen")]
+visible = false
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.988235, 0.847059, 0.337255, 1)
+icon = ExtResource("7_4b34f")
+flat = true
+script = ExtResource("8_ra1kj")
+CharID = 7
+ConfirmScreen = NodePath("../../Confirmation")
+
+[node name="HeadButt8" type="Button" parent="UI/CharSelection/CharSelectionGrid" node_paths=PackedStringArray("ConfirmScreen")]
+visible = false
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.988235, 0.847059, 0.337255, 1)
+icon = ExtResource("7_4b34f")
+flat = true
+script = ExtResource("8_ra1kj")
+CharID = 8
+ConfirmScreen = NodePath("../../Confirmation")
+
+[node name="HeadButt9" type="Button" parent="UI/CharSelection/CharSelectionGrid" node_paths=PackedStringArray("ConfirmScreen")]
+visible = false
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.988235, 0.847059, 0.337255, 1)
+icon = ExtResource("7_4b34f")
+flat = true
+script = ExtResource("8_ra1kj")
+CharID = 9
+ConfirmScreen = NodePath("../../Confirmation")
+
+[node name="Confirmation" type="Panel" parent="UI/CharSelection"]
+visible = false
+layout_mode = 0
+offset_left = 303.0
+offset_top = 497.0
+offset_right = 847.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="UI/CharSelection/Confirmation"]
+layout_mode = 2
+anchor_right = 0.68
+anchor_bottom = 0.993
+offset_right = 0.0799866
+offset_bottom = -0.943008
+text = "Bob: 
+HP: 20; Mana: 7;
+Attack: 6; Deffence: 1; Speed: 5; Crit Chance: 5%
+Special: None
+Do you want to ad him to your team?"
+
+[node name="Button" type="Button" parent="UI/CharSelection/Confirmation" node_paths=PackedStringArray("ConfirmScreen", "PTeam", "PreSelect")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.783
+anchor_top = 0.351
+anchor_right = 0.974
+anchor_bottom = 0.682
+offset_left = 0.0479736
+offset_top = -2.001
+offset_right = 0.143982
+offset_bottom = 0.0179901
+text = "Confirm"
+script = ExtResource("10_q6td7")
+ConfirmScreen = NodePath("..")
+PTeam = NodePath("../../Players Team")
+PreSelect = NodePath("../../PreSelect")
+
+[node name="Players Team" type="VBoxContainer" parent="UI/CharSelection" node_paths=PackedStringArray("CharSelection", "PreQueue", "PlayerContainer", "EnemyContainer", "Game")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.031
+anchor_top = 0.173
+anchor_right = 0.118
+anchor_bottom = 0.565
+offset_left = 0.288002
+offset_top = -0.103996
+offset_right = 0.0640106
+offset_bottom = -0.119965
+script = ExtResource("14_i1p8v")
+CharSelection = NodePath("..")
+PreQueue = NodePath("../PreSelect")
+PlayerContainer = NodePath("../../PlayerContainer")
+EnemyContainer = NodePath("../../EnemyContainer")
+Game = NodePath("../..")
+
+[node name="PreSelect" type="Container" parent="UI/CharSelection" node_paths=PackedStringArray("TurnQueue", "Game")]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 527.0
+offset_right = 240.0
+offset_bottom = 567.0
+script = ExtResource("12_ksnds")
+TurnQueue = NodePath("../../TurnQueue")
+Game = NodePath("../..")
+
+[node name="BattleText" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.28
+anchor_top = 0.847
+anchor_right = 0.665
+anchor_bottom = 0.991
+offset_top = -0.0090332
+offset_right = 0.25
+offset_bottom = -0.177063
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_rr6l6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="UI/PlayerActions/Attack" to="UI" method="_on_attack_pressed"]
+[connection signal="pressed" from="UI/PlayerActions/Defend" to="UI" method="_on_deffend_pressed"]
+[connection signal="pressed" from="UI/PlayerActions/Special" to="UI" method="_on_special_pressed"]
+[connection signal="pressed" from="UI/PlayerActions/GoBack" to="UI" method="_on_go_back_pressed"]
+[connection signal="pressed" from="UI/CharSelection/CharSelectionGrid/HeadButt1" to="UI/CharSelection/CharSelectionGrid/HeadButt1" method="_on_pressed"]
+[connection signal="pressed" from="UI/CharSelection/CharSelectionGrid/HeadButt2" to="UI/CharSelection/CharSelectionGrid/HeadButt2" method="_on_pressed"]
+[connection signal="pressed" from="UI/CharSelection/CharSelectionGrid/HeadButt3" to="UI/CharSelection/CharSelectionGrid/HeadButt3" method="_on_pressed"]
+[connection signal="pressed" from="UI/CharSelection/CharSelectionGrid/HeadButt4" to="UI/CharSelection/CharSelectionGrid/HeadButt4" method="_on_pressed"]
+[connection signal="pressed" from="UI/CharSelection/CharSelectionGrid/HeadButt5" to="UI/CharSelection/CharSelectionGrid/HeadButt5" method="_on_pressed"]
+[connection signal="pressed" from="UI/CharSelection/CharSelectionGrid/HeadButt6" to="UI/CharSelection/CharSelectionGrid/HeadButt6" method="_on_pressed"]
+[connection signal="pressed" from="UI/CharSelection/Confirmation/Button" to="UI/CharSelection/Confirmation/Button" method="_on_pressed"]

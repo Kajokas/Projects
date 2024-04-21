@@ -1,0 +1,157 @@
+[gd_scene load_steps=3 format=3 uid="uid://4bjc3mno2div"]
+
+[ext_resource type="Script" path="res://Scripts/MainGameSceneSrcipt.cs" id="1_emxlg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_busyk"]
+bg_color = Color(0, 0, 0, 0.909804)
+
+[node name="TheGame" type="Node" node_paths=PackedStringArray("StartMenu", "PauseMenu")]
+script = ExtResource("1_emxlg")
+StartMenu = NodePath("Start")
+PauseMenu = NodePath("PauseMenu")
+
+[node name="Start" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Background2" type="PanelContainer" parent="Start"]
+modulate = Color(0.423529, 0, 0.752941, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Start/Background2"]
+modulate = Color(0.423529, 0, 0.752941, 1)
+show_behind_parent = true
+layout_mode = 2
+
+[node name="Start2" type="Button" parent="Start"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.424
+anchor_top = 0.486
+anchor_right = 0.611
+anchor_bottom = 0.58
+offset_left = -0.448029
+offset_top = 5.07199
+offset_right = -27.872
+offset_bottom = 0.159973
+scale = Vector2(1.16, 1)
+theme_override_font_sizes/font_size = 25
+text = "Start"
+
+[node name="Exit2" type="Button" parent="Start"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.424
+anchor_top = 0.613
+anchor_right = 0.618
+anchor_bottom = 0.704
+offset_left = -0.448029
+offset_top = 2.77597
+offset_right = -35.936
+offset_bottom = -0.192047
+scale = Vector2(1.16, 1)
+theme_override_font_sizes/font_size = 25
+text = "Exit"
+
+[node name="Label2" type="Label" parent="Start"]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 48.0
+offset_right = 873.0
+offset_bottom = 211.0
+theme_override_font_sizes/font_size = 70
+text = "RPG Battle"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 0
+
+[node name="PauseMenu" type="Control" parent="."]
+visible = false
+z_index = 5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="Pause" type="Panel" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 352.0
+offset_top = 48.0
+offset_right = -279.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_busyk")
+
+[node name="Label" type="Label" parent="PauseMenu/Pause"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.337
+anchor_right = 0.664
+anchor_bottom = 0.131
+offset_left = 7.42299
+offset_top = 43.0
+offset_right = 0.0559692
+offset_bottom = -0.168007
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "Do you want to Quit?"
+
+[node name="Resume" type="Button" parent="PauseMenu/Pause"]
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.403
+anchor_top = 0.309
+anchor_right = 0.603
+anchor_bottom = 0.39
+offset_left = 0.0369873
+offset_top = -0.152008
+offset_right = -0.163025
+offset_bottom = 0.0799866
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Resume"
+
+[node name="Quit" type="Button" parent="PauseMenu/Pause"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.403
+anchor_top = 0.473
+anchor_right = 0.603
+anchor_bottom = 0.555
+offset_left = 0.0369873
+offset_top = 0.255997
+offset_right = -0.163025
+offset_bottom = -0.0400085
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Quit"
+
+[connection signal="pressed" from="Start/Start2" to="." method="_on_start_2_pressed"]
+[connection signal="pressed" from="Start/Exit2" to="." method="_on_exit_2_pressed"]
+[connection signal="pressed" from="PauseMenu/Pause/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/Pause/Quit" to="." method="_on_quit_pressed"]
